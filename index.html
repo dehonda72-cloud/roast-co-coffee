@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROAST & CO — Кофейня в Фергане</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-card: #FFFFFF;
+      --espresso: #2C1E16;
+      --roast-brown: #4A3326;
+      --caramel: #C68B59;
+      --caramel-hover: #B07645;
+      --text-muted: #78675C;
+      --border-soft: #EAE0D5;
+      --promo-bg: #EFE5D8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--espresso);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Шапка */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 246, 240, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 16px 0;
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--espresso);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--caramel);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--roast-brown);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--caramel);
+    }
+
+    /* Кнопки */
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--espresso);
+      color: #FAF6F0;
+      padding: 13px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.25s ease;
+      border: 1px solid var(--espresso);
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--caramel);
+      border-color: var(--caramel);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--espresso);
+      padding: 13px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1.5px solid var(--espresso);
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--espresso);
+      color: #FAF6F0;
+    }
+
+    /* Первый экран */
+    .hero {
+      padding: 64px 0 48px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: var(--promo-bg);
+      color: var(--roast-brown);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: var(--espresso);
+    }
+
+    .hero p {
+      max-width: 580px;
+      margin: 0 auto 30px;
+      color: var(--text-muted);
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Акция */
+    .promo-banner {
+      background: linear-gradient(135deg, #2C1E16 0%, #4A3326 100%);
+      color: #FAF6F0;
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin: 24px 0 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 12px 30px rgba(44, 30, 22, 0.12);
+    }
+
+    .promo-info h3 {
+      font-size: 28px;
+      color: #F3C69F;
+      margin-bottom: 6px;
+    }
+
+    .promo-info p {
+      font-size: 15px;
+      color: #EAE0D5;
+    }
+
+    .promo-btn {
+      background-color: var(--caramel);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .promo-btn:hover {
+      background-color: var(--caramel-hover);
+    }
+
+    /* Меню */
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      font-size: 15px;
+    }
+
+    .menu-category {
+      margin-bottom: 40px;
+    }
+
+    .category-label {
+      font-size: 26px;
+      color: var(--roast-brown);
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+
+    .menu-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(44, 30, 22, 0.06);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .item-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--espresso);
+    }
+
+    .item-price {
+      font-weight: 700;
+      color: var(--caramel);
+      font-size: 16px;
+      white-space: nowrap;
+      background: #FAF6F0;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .item-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .order-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background-color: #FAF6F0;
+      color: var(--espresso);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .order-btn:hover {
+      background-color: var(--espresso);
+      color: #FFFFFF;
+      border-color: var(--espresso);
+    }
+
+    /* Контакты */
+    .contacts-section {
+      margin: 56px 0 64px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .contact-box h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--caramel);
+      margin-bottom: 6px;
+    }
+
+    .contact-box p, .contact-box a {
+      font-size: 16px;
+      color: var(--espresso);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-box a:hover {
+      color: var(--caramel);
+    }
+
+    /* Подвал */
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      border-top: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .promo-banner {
+        padding: 22px;
+      }
+      .contacts-section {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="#" class="logo">ROAST <span>&</span> CO</a>
+      <nav class="nav-links">
+        <a href="#menu">Меню</a>
+        <a href="#promo">Акции</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a href="https://t.me/Doniyorov_Khondamir" target="_blank" class="btn-primary">Заказать в Telegram</a>
+    </div>
+  </header>
+
+  <!-- Первый экран -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge">Свежая обжарка • Фергана</span>
+      <h1>Твой идеальный кофе<br>без очередей и ожидания</h1>
+      <p>Выбирай любимый напиток и свежую выпечку прямо со смартфона — приготовим к твоему приходу или забронируем уютный столик.</p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn-primary">Смотреть меню</a>
+        <a href="https://instagram.com/doniyorov.xf" target="_blank" class="btn-secondary">Наш Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Баннер акции -->
+  <div class="container" id="promo">
+    <div class="promo-banner">
+      <div class="promo-info">
+        <h3>Утренний комбо −20%</h3>
+        <p>Каждый день с 08:00 до 11:00: любой кофе + свежий круассан со скидкой 20%.</p>
+      </div>
+      <button class="promo-btn" onclick="orderItem('Утренний комбо (кофе + круассан со скидкой 20%)')">Заказать комбо</button>
+    </div>
+  </div>
+
+  <!-- Меню -->
+  <section id="menu" class="container">
+    <h2 class="section-title">Наше меню</h2>
+    <p class="section-subtitle">Нажмите «Заказать заранее», чтобы отправить готовый заказ в Telegram</p>
+
+    <!-- Кофе -->
+    <div class="menu-category">
+      <h3 class="category-label">Авторский и классический кофе</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Эспрессо</div>
+              <div class="item-price">18 000 сум</div>
+            </div>
+            <p class="item-desc">Насыщенный шот 100% арабики с плотной золотистой крема.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Эспрессо (18 000 сум)')">Заказать заранее</button>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Американо</div>
+              <div class="item-price">22 000 сум</div>
+            </div>
+            <p class="item-desc">Классический чёрный кофе с мягким вкусом и чистым послевкусием.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Американо (22 000 сум)')">Заказать заранее</button>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Капучино</div>
+              <div class="item-price">28 000 сум</div>
+            </div>
+            <p class="item-desc">Идеальный баланс двойного эспрессо и бархатистой молочной пенки.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Капучино (28 000 сум)')">Заказать заранее</button>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Латте</div>
+              <div class="item-price">30 000 сум</div>
+            </div>
+            <p class="item-desc">Нежный сливочно-молочный напиток на основе мягкого эспрессо.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Латте (30 000 сум)')">Заказать заранее</button>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Айс-Латте Карамель</div>
+              <div class="item-price">36 000 сум</div>
+            </div>
+            <p class="item-desc">Охлаждённый латте со льдом и домашней солёной карамелью.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Айс-Латте Карамель (36 000 сум)')">Заказать заранее</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Десерты -->
+    <div class="menu-category">
+      <h3 class="category-label">Выпечка и десерты</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Круассан с шоколадом</div>
+              <div class="item-price">25 000 сум</div>
+            </div>
+            <p class="item-desc">Хрустящее слоёное тесто на сливочном масле с бельгийским шоколадом.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Круассан с шоколадом (25 000 сум)')">Заказать заранее</button>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Чизкейк Нью-Йорк</div>
+              <div class="item-price">38 000 сум</div>
+            </div>
+            <p class="item-desc">Классический нежный творожно-сливочный десерт на песочной основе.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Чизкейк Нью-Йорк (38 000 сум)')">Заказать заранее</button>
+        </div>
+        <div class="menu-card">
+          <div>
+            <div class="card-top">
+              <div class="item-name">Медовик домашний</div>
+              <div class="item-price">32 000 сум</div>
+            </div>
+            <p class="item-desc">Нежные медовые коржи со сметанным кремом.</p>
+          </div>
+          <button class="order-btn" onclick="orderItem('Медовик домашний — (32 000 сум)')">Заказать заранее</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contacts" class="container">
+    <div class="contacts-section">
+      <h2 class="section-title" style="text-align: left; font-size: 34px;">Ждём вас в гости</h2>
+      <div class="contacts-grid">
+        <div class="contact-box">
+          <h4>Адрес</h4>
+          <p>г. Фергана, ул. Аль-Фергани, 45<br><span style="font-size: 14px; color: var(--text-muted);">Ориентир: рядом с центральным парком</span></p>
+        </div>
+        <div class="contact-box">
+          <h4>График работы</h4>
+          <p>Ежедневно<br>с 08:00 до 23:00</p>
+        </div>
+        <div class="contact-box">
+          <h4>Быстрый заказ</h4>
+          <p><a href="https://t.me/Doniyorov_Khondamir" target="_blank">Telegram: @Doniyorov_Khondamir</a></p>
+          <p><a href="https://instagram.com/doniyorov.xf" target="_blank">Instagram: @doniyorov.xf</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="container">
+      <p>© 2026 ROAST & CO. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Скрипт быстрого заказа в Telegram -->
+  <script>
+    function orderItem(itemName) {
+      // Для демонстрации в портфолио можешь заменить на свой юзернейм Doniyorov_Khondamir
+      const username = "Doniyorov_Khondamir";
+      const message = `Здравствуйте! Хочу оформить предзаказ в ROAST & CO: ${itemName}. Подскажите, через сколько минут можно забрать?`;
+      const url = `https://t.me/${username}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
